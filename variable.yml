@@ -1,0 +1,32 @@
+---
+
+- hosts: ubuntu
+  become: yes
+  vars:
+    pack1: openjdk-8-jdk
+    pack2: maven
+    pack3: tree
+    pack4: python
+    insta: present
+  tasks:
+
+
+    - name: install "{{pack1}}"
+      apt:
+        name: "{{pack1}}"
+        state: "{{insta}}"
+   
+    - name: install "{{pack2}}"
+      apt:
+        name: "{{pack2}}"
+        state: "{{insta}}"
+
+    - name: install "{{pack3}}"
+      apt:
+        name: "{{pack3}}"
+        state: "{{insta}}"
+
+    - name: install "{{pack4}}"
+      apt:
+        name: "{{pack4}}"
+        state: "{{insta}}"
