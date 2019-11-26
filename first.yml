@@ -1,0 +1,33 @@
+---
+
+- hosts: centos
+  become: yes
+  tasks:
+
+    - name: install httpd package
+      yum:
+        name: httpd
+        state: present
+
+    - name: start httpd service
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: copy index.html file
+      copy:
+        src: index.html
+        dest: /var/www/html/
+
+    - name: download html template
+      get_url:
+        url: https://www.free-css.com/assets/files/free-css-templates/download/page247/cleanphotography.zip
+        dest: /home/ansadm/
+
+    - name: extract html template
+      unarchive:
+        src: /home/ansadm/cleanphotography.zip
+        dest: /home/ansadm/
+        remote_src: yes
+ 
