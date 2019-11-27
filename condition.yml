@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  become: yes
+  gather_facts: true 
+  tasks:
+
+
+    - name: install mysql-server
+      yum:
+        name: mariadb-server
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: install mysql-server
+      apt:
+        name: mysql-server
+        state: present
+      when: ansible_os_family == "Debian"
