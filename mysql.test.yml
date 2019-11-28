@@ -1,0 +1,26 @@
+---
+
+- hosts: ubuntu
+  become: yes
+  vars:
+    mysql: mysql-server
+ 
+  tasks:
+  
+    - name: install mysql-server
+      apt:
+        name: "{{item}}"
+        state: present
+      with_items:
+          - "{{mysql}}"
+
+    - name: start mysql service
+      service:
+        name: mysql
+        state: started
+
+    - name: Create a new database with name 'bobdata'
+      mysql_db:
+         name: accounts
+         state: present
+
